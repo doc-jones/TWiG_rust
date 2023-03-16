@@ -30,6 +30,8 @@ async fn main() -> Result<(), Error> {
 
     let prs_data: Value = client.get(&prs_url).send().await?.json().await?;
 
+    writeln!(output_file, "Respository: {}/{}\n", repo_owner, repo_name).expect("Unable to write to file");
+
     for pr in prs_data.as_array().unwrap() {
         let merged = pr["merged"].as_bool().unwrap_or(false);
 
@@ -41,9 +43,9 @@ async fn main() -> Result<(), Error> {
             let updated_at = pr["updated_at"].as_str().unwrap();
             let merged_at = pr["merged_at"].as_str().unwrap();
 
-            println!("PR #{}: {}\nAuthor: {}\nCreated at: {}\nUpdated at: {}\nMerged at: {}\n",
+            writeln!(output_file, "PR #{}: {}\nAuthor: {}\nCreated at: {}\nUpdated at: {}\nMerged at: {}\n",
                 number, title, user, created_at, updated_at, merged_at
-            );
+            )?;
         }
     }
 
