@@ -6,7 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tokio = { version = "1.0", features = ["full"] }
+get_prs = { path = "get_prs" }
+reqwest = { version = "0.11", features = ["json"] }
+serde_json = "1"
+chrono = "0.4"
+tokio = { version = "1", features = ["full"] }
 
 [workspaces]
 members = [ "get_prs" ]
