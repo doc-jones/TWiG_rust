@@ -9,7 +9,7 @@ use std::{env, fs, io};
 use time::{macros::format_description, Date, Duration};
 
 static WORKSPACE: &str = env!("CARGO_MANIFEST_DIR");
-static TWIR: &str = "../this-week-in-rust";
+static TWiG: &str = "../this-week-in-graphql";
 
 type Config = HashMap<String, String>;
 
@@ -102,18 +102,11 @@ async fn prs(week_spec: &str) -> Result<u64, Box<dyn Error>> {
         page = new_page;
     }
     let repos: HashMap<&'static str, &'static str> = HashMap::from([
-        ("rust-clippy", "clippy"),
-        ("rustfmt", "rustfmt"),
-        ("cargo", "cargo"),
-        ("rustc_codegen_gcc", "codegen\\_gcc"),
-        ("futures-rs", "futures"),
-        ("rustup", "rustup"),
-        ("libc", "libc"),
-        ("docs.rs", "docs.rs"),
-        ("hashbrown", "hashbrown"),
-        ("miri", "miri"),
-        ("rust-analyzer", "rust-analyzer"),
-        ("rust-bindgen", "bindgen"),
+        ("dataloader", "dataloader"),
+        ("graphql-spec", "graphql-spec"),
+        ("graphql-js", "graphql-js"),
+        ("graphiql", "graphiql"),
+        ("graphql-over-http", "graphql-over-http"),
     ]);
 
     let out = fs::File::create("cache/prs")?;
